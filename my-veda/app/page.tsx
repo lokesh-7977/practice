@@ -2,13 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image"; // Import Next.js Image component
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({});
   const logoRef = useRef(null);
   const headingRef = useRef(null);
   const timerRef = useRef(null);
-  const buttonRef = useRef(null);
 
   const calculateTimeLeft = () => {
     const launchDate = new Date("2024-11-07T19:00:00");
@@ -68,7 +68,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative overflow-hidden p-4">
-      <img ref={logoRef} src="https://res.cloudinary.com/lokesb/image/upload/v1727026301/Logo_-_Prathibha_Connect_c9ekbf.jpg" alt="Logo" className="w-40 h-40 mb-8 drop-shadow-lg" />
+      <Image
+        ref={logoRef}
+        src="https://res.cloudinary.com/lokesb/image/upload/v1727026301/Logo_-_Prathibha_Connect_c9ekbf.jpg"
+        alt="Logo"
+        width={160}
+        height={160}
+        className="w-40 h-40 mb-8 drop-shadow-lg"
+      />
       <h1 ref={headingRef} className="text-5xl md:text-6xl font-black mb-4 text-sky-700 tracking-wider text-center">
         NEX CONNECT
       </h1>
@@ -76,7 +83,7 @@ export default function Home() {
       <h2 className="text-2xl md:text-3xl mb-8 font-semibold text-gray-300 text-center">7th November, 7:00 PM</h2>
 
       <div ref={timerRef} className="flex flex-col sm:flex-row justify-center items-center space-x-0 sm:space-x-8 mb-8">
-        {timerComponents.length ? timerComponents : <span className="text-red-500">Time's up!</span>}
+        {timerComponents.length ? timerComponents : <span className="text-red-500">Time&apos;s up!</span>}
       </div>
 
       <footer className="absolute bottom-4 text-gray-400 text-sm text-center">
