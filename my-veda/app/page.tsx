@@ -43,14 +43,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (Object.keys(timeLeft).length > 0) {
-      gsap.fromTo(
-        timerRef.current.children[3], 
-        { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", repeat: -1, yoyo: true }
-      );
-    }
-  }, [timeLeft]);
+  if (Object.keys(timeLeft).length > 0 && timerRef.current) {
+    gsap.fromTo(
+      timerRef.current.children[3], 
+      { opacity: 0, scale: 0.5 },
+      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", repeat: -1, yoyo: true }
+    );
+  }
+}, [timeLeft]);
+
 
   const timerComponents = Object.keys(timeLeft).map((interval) => {
     if (!timeLeft[interval]) {
