@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
@@ -11,7 +11,7 @@ export default function Home() {
   const timerRef = useRef(null);
 
   const calculateTimeLeft = () => {
-    const launchDate = new Date("2024-11-07T19:00:00");
+    const launchDate = new Date("2024-11-27T19:00:00"); // Updated date
     const difference = +launchDate - +new Date();
     let timeLeft = {};
 
@@ -43,15 +43,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-  if (Object.keys(timeLeft).length > 0 && timerRef.current) {
-    gsap.fromTo(
-      timerRef.current.children[3], 
-      { opacity: 0, scale: 0.5 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", repeat: -1, yoyo: true }
-    );
-  }
-}, [timeLeft]);
-
+    if (Object.keys(timeLeft).length > 0 && timerRef.current) {
+      gsap.fromTo(
+        timerRef.current.children[3], 
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", repeat: -1, yoyo: true }
+      );
+    }
+  }, [timeLeft]);
 
   const timerComponents = Object.keys(timeLeft).map((interval) => {
     if (!timeLeft[interval]) {
@@ -81,7 +80,7 @@ export default function Home() {
         NEX CONNECT
       </h1>
       <h2 className="text-2xl md:text-3xl mb-2 font-semibold text-gray-300 text-center">Our Product Launches On</h2>
-      <h2 className="text-2xl md:text-3xl mb-8 font-semibold text-gray-300 text-center">7th November, 7:00 PM</h2>
+      <h2 className="text-2xl md:text-3xl mb-8 font-semibold text-gray-300 text-center">27th November, 7:00 PM</h2> {/* Updated date */}
 
       <div ref={timerRef} className="flex flex-col sm:flex-row justify-center items-center space-x-0 sm:space-x-8 mb-8">
         {timerComponents.length ? timerComponents : <span className="text-red-500">Time&apos;s up!</span>}
